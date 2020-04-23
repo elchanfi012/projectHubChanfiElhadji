@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter projet!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('Css/user.css')}}">
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center"> Ajouter un projet </h1>
+
+    {{ form(addProjectForm) }}
+
+{% endblock %}

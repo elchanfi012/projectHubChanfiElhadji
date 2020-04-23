@@ -1,0 +1,31 @@
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ path('projects')}}"> Projets </a>
+                {#<a class="nav-item nav-link" href="{{ path('users')}}"> Liste utilisateurs</a>
+                <a class="nav-item nav-link" href="{{ path('contact')}}"> Contact</a>#}
+
+            </div>
+        </div>
+
+        {% if app.user %}
+            <div class="float-right">
+                {#<a  href="{{ path('stats', {user_id:app.user.id} )}}"> {{ app.user.firstname }}</a>#}
+                <a  href="{{ path('app_logout')}}"> Log out</a>
+                
+             </div>
+            
+        {% else %}
+            <div class="float-right">
+                {#<a href="{{ path('register')}}">Inscription</a>#}
+                <a href="{{ path('app_login')}}">Log in</a>
+            </div>
+              
+        {% endif %}
+    </nav>
+
+

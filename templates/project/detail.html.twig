@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail projet!{% endblock %}
+
+{% block body %}
+
+    <h1 class="ml-5"> ProjectHub </h1>
+
+    <div class="row ">
+
+      <div class="col-4 offset-2">
+        <h2> Projet:  {{ project.name}} </h2>
+        <p> Crée le:  {{ project.startedAt|date('d-m-Y H:i:s') }} </p>
+        <p> Nombre de tâches:  {{ project.tasks|length }} </p>
+
+      </div>
+
+      <div class="col-4">
+         <form class="mt-5" action="{{ path('detail_project', {project_id:project.id})}}" method="post">
+            {% if project.status == "Nouveau" %}
+
+              <select name="status" id="pet-select">
+                <option value="Nouveau" selected>Nouveau</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminee">Terminée</option>
+              </select>
+
+              <input type="submit" class="btn btn-success" id="changer" name="changer" value="changer">
+
+            {% elseif  project.status == "En cours" %}
+
+              <select name="status" id="pet-select">
+                <option value="Nouveau">Nouveau</option>
+                <option value="En cours" selected>En cours</option>
+                <option value="Terminee">Terminée</option>
+              </select>
+
+              <input type="submit" class="btn btn-success" id="changer" name="changer" value="changer">
+
+            {% else %}
+              <select name="status" id="pet-select">
+                <option value="Nouveau">Nouveau</option>
+                <option value="En cours" >En cours</option>
+                <option value="Terminee" selected>Terminée</option>
+              </select>
+              
+              
+              
+              
+            {% endif %}
+            
+          
+          
+         </form>
+
+      </div>
+
+    </div>
+
+
+    <form class="form" action="{{ path('add_task', {project_id:project.id})}}" method="post" >
+        <div class="row">
+                <div class=" col-2 offset-2 mb-5">
+                    <input class="btn btn-success mt-5" type="submit"value="Ajouter une tâche">
+                </div>
+        </div>
+    <form>
+
+
+  <div class="row">
+    <div class="col-8 offset-2">
+
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nom de la tâche</th>
+            <th scope="col">Description</th>
+            <th scope="col">Ajouté le</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in project.tasks %}
+            <tr>
+              <td>{{ task.title }}</td>
+              <td>{{ task.description }}</td>
+              <td>{{ task.createdAt|date('d-m-Y H:i:s') }}</td>
+            </tr>
+
+          {% endfor %}
+    
+   
+        </tbody>
+      </table>
+
+    </div>
+  </div>    
+
+    
+
+{% endblock %}
